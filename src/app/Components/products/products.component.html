@@ -1,0 +1,35 @@
+
+
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Image</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Price USD</th>
+        <th scope="col">Need Quantity</th>
+        <th scope="col">Details</th>
+        <th scope="col">Buy</th>
+      </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let p of productLstByCat;let i=index">
+      <tr  scope="row">
+        <td >{{i+1}}</td>
+        <td>{{p.name}}</td>
+        <td><img width="50px" appLightbox="red" [src]="p.imageUrl" ></td>
+        <td>{{p.quantity}}</td>
+        <td>{{p.price|currency:'EGP'}}</td>
+        <td>{{p.price|usdToEgp:30}}</td>
+        <td><input #itemCount ></td>
+        <td><button   (click)="details(p.id)">Details</button></td>
+        <td><button   (click)="buy(p.id,itemCount.value,p.price)">Buy</button></td>
+  
+      </tr></ng-container>
+    
+    </tbody>
+  </table>
+

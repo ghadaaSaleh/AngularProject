@@ -1,0 +1,40 @@
+{{newPrd|json}}
+{{NameInp.untouched}}{{NameInp.pristine}}{{NameInp.valid}}
+<form (ngSubmit)="addProduct()" #prdFrm="ngForm">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Product Name</label>
+      <input type="text" #NameInp="ngModel" [(ngModel)]="newPrd.name" class="form-control" id="pName"  name="pName1" aria-describedby="emailHelp" placeholder="Enter Name" required>
+    <div [hidden]="NameInp.valid" style="color: red;">Required</div>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Price</label>
+        <input type="text" #EmailInp="ngModel" [(ngModel)]="newPrd.price" class="form-control" id="price"  name="price1" aria-describedby="emailHelp" placeholder="Enter Price" required>
+        <div [hidden]="EmailInp.valid" style="color: red;">Required</div>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Quantity</label>
+        <input type="text" #QuantityInp="ngModel" [(ngModel)]="newPrd.quantity" class="form-control" id="quantity"  name="quantity1" aria-describedby="emailHelp" placeholder="Enter Quantity" required>
+        <div [hidden]="QuantityInp.valid" style="color: red;">Required</div>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Image</label>
+        <input type="text" #ImageInp="ngModel" [(ngModel)]="newPrd.imageUrl" class="form-control" id="pImage"  name="pImage1" aria-describedby="emailHelp" placeholder="Enter Image Link" required>
+        <div [hidden]="ImageInp.valid" style="color: red;">Required</div>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">Product Category</label>
+        <br/>
+    <select name="category1" #CategoryInp="ngModel" id="category" [(ngModel)]="newPrd.categoryID" required>
+      
+        <option value="1">fruits</option>
+        <option value="2">Choclates</option>
+        <option value="3">Chipsy</option>
+        <option value="4">Cheese</option>
+        <option value="5">Coffee</option>
+    </select>
+    <div [hidden]="CategoryInp.valid" style="color: red;">Required</div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="prdFrm.invalid">Submit</button>
+  </form>
+

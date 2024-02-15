@@ -1,0 +1,12 @@
+<select  class="form-select" aria-label="Default select example" [(ngModel)]="CatId">
+    <option  value="0">All</option>
+      <option *ngFor="let c of categoryLst" value="{{c.id}}">{{c.name}}</option>
+  
+     
+    </select>
+
+<app-products [selectedCatId]="CatId" (totalPriceChanged)="onTotalPriceChange($event)"></app-products>
+{{totalPrice}}
+<br/>
+<label>Enter Client Name </label>
+<input type="text" class="form-control" #clientNameID>

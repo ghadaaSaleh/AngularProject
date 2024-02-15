@@ -1,0 +1,16 @@
+
+
+<div class="card" style="width: 18rem;">
+    <img [src]="Product?.imageUrl" class="card-img-top" alt="...">
+    <div class="card-body">
+      <p class="card-text">{{Product?.id}}</p>
+      <p class="card-text">{{Product?.name}}</p>
+      <p class="card-text">{{Product?.price}}</p>
+    </div>
+  </div>
+  <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+    <button type="button" class="btn btn-danger" (click)="Previous()" [disabled]="currentPid==prdIdArray[0]">Previous</button>
+    <button type="button" class="btn btn-warning" (click)="goback()">Go Back</button>
+    <button type="button" class="btn btn-success"  (click)="Next()" [disabled]="currentPid==prdIdArray[prdIdArray.length-1]">Next</button>
+  </div>
+  

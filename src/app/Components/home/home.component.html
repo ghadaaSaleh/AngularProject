@@ -1,0 +1,7 @@
+<h1>{{storeInfo.name}}</h1>
+<img [src]="storeInfo.imageURL" *ngIf="isImageShown">
+<br/><br/>
+<button type="button" (click)="toggleImage()"  class="btn btn-primary">{{isImageShown?"Hide":"Show"}} Image</button>
+<ul><li *ngFor="let item of storeInfo.branches">{{item}}</li></ul>
+
+

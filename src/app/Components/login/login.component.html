@@ -1,0 +1,7 @@
+
+User
+<div *ngIf="isUserLogged;then content else other_content"></div>
+<ng-template #content>logged in</ng-template>
+<ng-template #other_content>logged out</ng-template>
+<button  type="button"  class="btn btn-success" [disabled]="isUserLogged" (click)="login()">login</button> 
+<button  type="button"  class="btn btn-danger" [disabled]="!isUserLogged" (click)="logout()">logout</button> 

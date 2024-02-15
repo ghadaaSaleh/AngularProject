@@ -1,0 +1,93 @@
+<form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()"  #name="ngForm">
+    <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text"  class="form-control" id="fullName" formControlName="fullName" placeholder="Enter Full Name">
+        <small *ngIf="fullName.errors?.['required']" style="color: red;">
+            Full Name is required.
+          </small>
+    </div>
+   
+   
+    <div formArrayName="phoneNo" class="form-group" *ngFor="let phoneNumber of phoneNumbers.controls;let i=index">
+        <label for="{{'phone_'+i+1}}">Mobile{{i+1}}</label>
+        <input type="text" class="form-control" id="{{'phone_'+i+1}}" placeholder="Enter Mobile" [formControlName]="i">
+        <button  type="button" class="btn btn-primary" (click)="addPhoneNo()">+</button>
+    </div>
+
+
+    <div class="form-group" >
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter Password" formControlName="password">
+       
+      </div>
+
+    <div class="form-group" >
+      <label for="exampleInputPassword1">Confirm Password</label>
+      <input type="password" class="form-control" id="confirmPassword" placeholder="Enter Password" formControlName="confirmPassword">
+      
+    </div>
+  <small *ngIf="reactiveForm.errors?.['passwordConfirmError']" style="color: red;">
+    Password Mismatch.
+  </small>
+
+    <div formGroupName="address"  novalidate>
+        <div class="form-group">
+            <label for="fullName">City</label>
+            <input type="text" class="form-control" id="city" formControlName="city"
+                placeholder="Enter City">
+        </div>
+        <div class="form-group">
+            <label for="fullName">Postal Code</label>
+            <input type="text" class="form-control" id="postalCode" formControlName="postalCode"
+                placeholder="Enter Postal Code">
+        </div>
+
+        <div class="form-group">
+            <label for="fullName">Street</label>
+            <input type="text" class="form-control" id="street" formControlName="street"
+                placeholder="Enter Street">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputPassword1">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter Email" formControlName="email">
+        <div  *ngIf="email.errors">
+            <small *ngIf="email.errors?.['required']" style="color: red;">
+                Email is required.
+              </small>
+        <small *ngIf="email?.errors?.['EmailNotValid']" style="color: red;">
+            Email not valid
+          </small>
+        </div>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="referral" id="flexRadioDefault" formControlName="referral" value="socialmedia" name="referral" (change)="updateReferralValidators()">
+        <label class="form-check-label" for="flexRadioDefault2">
+         Social Media
+        </label>
+      </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="referral" id="flexRadioDefault1" formControlName="referral" value="friend" name="referral" (change)="updateReferralValidators()">
+        <label class="form-check-label" for="flexRadioDefault1">
+         Friend
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="referral" id="flexRadioDefault2"  formControlName="referral" value="other" name="referral" (change)="updateReferralValidators()">
+        <label class="form-check-label" for="flexRadioDefault2">
+         Other
+        </label>
+      </div>
+      <div *ngIf="referral?.value=='other'">
+       
+        <label >
+         Specify
+        </label>
+        <input type="text" class="form-control" id="referralOther" placeholder="Enter Other" formControlName="referralOther">
+        <small *ngIf="referralOther.errors?.['required']" style="color: red;">
+          Other Reason is required.
+        </small>
+      </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!reactiveForm.valid">Submit</button>
+</form>
